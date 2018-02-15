@@ -34,21 +34,22 @@ print "\n"
 #print(len(temp_list))
 #print("\n")
 
+#for loop to make requests for each file in array called "files"
 for i in range(0, len(files)):
 
     filename = files[i]
 
     session = requests.Session()
     
-    session.auth = HttpNtlmAuth('SharepointDomain\\username','password', session)
+    session.auth = HttpNtlmAuth('SharepointDomain\\username','password', session) 
 
     file = open(path + "\\" + filename, 'rb')
     
     bytes = bytearray(file.read())
     
-    resp = requests.put('Full directory path including hostname where the files will be uploaded' + filename, data=bytes, auth=session.auth)
+    resp = requests.put('Full directory path including hostname where the files will be uploaded' + filename, data=bytes, auth=session.auth) #response output of corresponding current request
             
-    print "Status response for file #",i+1, "is", resp.status_code #prints out status code of current iteration in request loop
+    print "Status response for file #",i+1, "is", resp.status_code #prints out status code of current iteration in request loop starting in line #38
 
 
 
