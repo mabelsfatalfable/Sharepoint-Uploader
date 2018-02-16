@@ -4,20 +4,20 @@ import sys
 from requests_ntlm import HttpNtlmAuth
 import glob
 
-path = 'path to directory including files or documents to upload'
+path = 'C:\Python27'
 
     
 files = next(os.walk(path))[2]
-print "File array:" 
-print files #displays file array
+print "File array:"
+print files
 print "\n"
-print 'Total number of files in', path, 'is', len(files) #evaluates total number of documents to upload
+print 'Total number of files in', path, 'is', len(files)
 print "\n"
 print "Files listed in directory:"
 print "\n"
 i = 0
 for i in range(0,len(files)):
-    print(path+"\\."+files[i]) #lists the files with correct paths
+    print(path+"\\."+files[i])
     i += 1
 print "\n"
    
@@ -34,23 +34,49 @@ print "\n"
 #print(len(temp_list))
 #print("\n")
 
-#for loop to make requests for each file in array called "files"
-for i in range(0, len(files)):
+#print 'Do you want to continue to upload? (Y)es or (N)o'
 
-    filename = files[i]
+#print 'Press (Y) to continue...'
 
-    session = requests.Session()
-    
-    session.auth = HttpNtlmAuth('SharepointDomain\\username','password', session) 
+status = []
 
-    file = open(path + "\\" + filename, 'rb')
+play = True
+
+while play:
+	
+    answer = raw_input('Do you want to continue to upload? (Y)es or (N)o: \n').lower()
+	
+    while True:
+        if answer == 'y':
+		
+		for i in range(0, len(files)):
+
+			filename = files[i]
+
+			session = requests.Session()
+		
+			session.auth = HttpNtlmAuth('SharepointDomain\\username','password', session)
+
+			file = open(path + "\\" + filename, 'rb')
     
-    bytes = bytearray(file.read())
+			bytes = bytearray(file.read())
     
-    resp = requests.put('Full directory path including hostname where the files will be uploaded' + filename, data=bytes, auth=session.auth) #response output of corresponding current request
+			resp = requests.put('Full directory path including hostname where the files will be uploaded' + filename, data=bytes, auth=session.auth)
             
-    print "Status response for file #",i+1, "is", resp.status_code #prints out status code of current iteration in request loop starting in line #38
+			print "Status response for file #",i+1, "is", resp.status_code
+			
+			status = 'ok'
+			
+		break
+		
+        elif answer == 'n':
+            play = False
+            break
+        else:
+            answer = raw_input('Incorrect input. Press \"Y" to continue or \"N" to leave": ').lower()
 
 
 
-    
+print 'Program will exit.'
+
+
