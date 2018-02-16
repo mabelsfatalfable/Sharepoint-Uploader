@@ -4,7 +4,7 @@ import sys
 from requests_ntlm import HttpNtlmAuth
 import glob
 
-path = 'C:\Python27'
+path = 'C:\Python27' #CHANGE THIS
 
     
 files = next(os.walk(path))[2]
@@ -44,7 +44,7 @@ play = True
 
 while play:
 	
-    answer = raw_input('Do you want to continue to upload? (Y)es or (N)o: \n').lower()
+    answer = raw_input('Do you want to continue to upload corresponding files? (Y)es or (N)o: \n').lower()
 	
     while True:
         if answer == 'y':
@@ -55,7 +55,7 @@ while play:
 
 			session = requests.Session()
 		
-			session.auth = HttpNtlmAuth('SharepointDomain\\username','password', session)
+			session.auth = HttpNtlmAuth('SharepointDomain\\username','password', session) #CHANGE THIS
 
 			file = open(path + "\\" + filename, 'rb')
     
