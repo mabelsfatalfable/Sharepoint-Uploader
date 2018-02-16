@@ -49,6 +49,12 @@ while play:
     while True:
         if answer == 'y':
 		
+		print 'Script will start uploading... \n'
+		
+		print 'Check if status codes are 200 (200 OK - The request has succeeded) ' 
+		print 'or 201 (201 CREATED - The request has been fulfilled and has resulted'
+		print 'in one or more new resources being created). If not, try again. \n'
+		
 		for i in range(0, len(files)):
 
 			filename = files[i]
