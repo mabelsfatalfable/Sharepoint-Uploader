@@ -65,7 +65,7 @@ regex = re.compile(r'\.ppt')
 ppt_files = filter(regex.search, files)
 print(ppt_files)	
 
-files = pdf_files + docx_files + xlsx_files +ppt_files
+files = pdf_files + docx_files + xlsx_files + ppt_files
 
 #temp_list = glob.glob('single_file_sharepoint.py')
 
