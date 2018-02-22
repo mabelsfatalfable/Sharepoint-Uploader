@@ -92,7 +92,7 @@ while play:
 
 			session = requests.Session()
 		
-			session.auth = HttpNtlmAuth('TURKSAT\\username','password', session)
+			session.auth = HttpNtlmAuth('SharepointDomain\\username','password', session)
 
 			file = open(path + "\\" + filename, 'rb')
     
